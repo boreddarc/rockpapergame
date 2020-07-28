@@ -1,0 +1,77 @@
+<html>
+    <body>
+    <script>
+        function userPlay(){
+            let playerSelection = prompt("Rock, Paper, Scissors?");
+            const rpsArr = ["rock", "paper", "scissors"];
+            while(!rpsArr.includes(playerSelection.toLowerCase()));
+            {
+             playerSelection = prompt("Rock, Paper, Scissors?");
+            }
+        return playerSelection;
+
+        }
+
+        function computerPlay(){
+            let computerSelection;
+            let choices = ['Rock','Paper','Scissors'];
+            computerSelection = choices[Math.floor(Math.random() * choices.length)].toLowerCase();
+            return computerSelection;
+        }
+
+        function playRound(playerSelection, computerSelection)
+        {
+            let result;
+            if(playerSelection == computerSelection){
+                result = "Draw";
+            }
+            else if((playerSelection == "rock" && computerSelection == "scissors") || (playerSelection == "paper" && computerSelection == "rock") || (playerSelection == "scissors" && computerSelection == "paper")){
+                result = "Player";
+            }
+            else{
+                result = "Computer";
+            }
+            return result;
+
+        }
+
+        function game(){
+            let gamecount = 0;
+            let playerScore = 0;
+            let computerScore = 0;
+            while(gamecount < 5){
+                gamecount++;
+                let playSelect = userPlay();
+                let compSelect = computerPlay();
+                switch(playRound(playSelect, compSelect)){
+                    case "Draw":
+                        console.log("Player chose " + playSelect + ", while Computer chose " + compSelect + ". Result: Draw.");
+                        break;
+                    case "Player":
+                        console.log("Player chose " + playSelect + ", while Computer chose " + compSelect + ". Result: Player Wins!");
+                        playerScore++;
+                        break;
+                    case "Computer":
+                        console.log("Player chose " + playSelect + ", while Computer chose " + compSelect + ". Result: Computer Wins!");
+                        computerScore++;
+                        break;
+                }
+                console.log("After round " + gamecount + ", Player: " + playerScore + " points, while Computer: "+ computerScore + " points.");
+            }
+            console.log("Final scores: Player: " + playerScore + " | Computer: " + computerScore);
+            if (playerScore > computerScore){
+                console.log("Player Wins!");
+            }
+            else if (playerScore < computerScore){
+                console.log("Computer Wins!");
+            }
+            else{
+                console.log("Draw!");
+            }
+
+        }
+
+        game();
+    </script>
+    </body>
+</html>
